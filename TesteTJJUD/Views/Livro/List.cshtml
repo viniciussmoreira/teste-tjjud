@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TesteTJJUD.Models.Livro>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2 class="text-primary">List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success mb-3" })
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Titulo)</th>
+                <th>@Html.DisplayNameFor(model => model.Editora)</th>
+                <th>@Html.DisplayNameFor(model => model.Edicao)</th>
+                <th>@Html.DisplayNameFor(model => model.AnoPublicacao)</th>
+                <th>@Html.DisplayNameFor(model => model.Valor)</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Titulo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Editora)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Edicao)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AnoPublicacao)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+                    <td class="text-center">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Codl }, new { @class = "btn btn-warning btn-sm" })
+                        @Html.ActionLink("Details", "Details", new { id = item.Codl }, new { @class = "btn btn-info btn-sm mx-2" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Codl }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

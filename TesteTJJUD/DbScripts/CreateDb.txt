@@ -1,0 +1,52 @@
+﻿-- Criar o banco de dados
+CREATE DATABASE TjTesteDb;
+GO
+
+-- Usar o banco de dados
+USE TjTesteDb;
+GO
+
+-- Criar a tabela Livro
+CREATE TABLE Livro (
+    Codl INT IDENTITY(1,1) PRIMARY KEY,
+    Titulo VARCHAR(40) NOT NULL,
+    Editora VARCHAR(40) NOT NULL,
+    Edicao INT NOT NULL,
+    AnoPublicacao VARCHAR(4) NOT NULL,
+    Valor DECIMAL(10,2) NOT NULL
+);
+GO
+
+-- Criar a tabela Autor
+CREATE TABLE Autor (
+    CodAu INT IDENTITY(1,1) PRIMARY KEY,
+    Nome VARCHAR(40) NOT NULL
+);
+GO
+
+-- Criar a tabela Assunto
+CREATE TABLE Assunto (
+    CodAs INT IDENTITY(1,1) PRIMARY KEY,
+    Descricao VARCHAR(20) NOT NULL
+);
+GO
+
+-- Criar a tabela de relacionamento Livro_Autor (N para N)
+CREATE TABLE Livro_Autor (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Livro_Codl INT NOT NULL,
+    Autor_CodAu INT NOT NULL,
+    CONSTRAINT FK_LivroAutor_Livro FOREIGN KEY (Livro_Codl) REFERENCES Livro (Codl) ON DELETE CASCADE,
+    CONSTRAINT FK_LivroAutor_Autor FOREIGN KEY (Autor_CodAu) REFERENCES Autor (CodAu) ON DELETE CASCADE
+);
+GO
+
+-- Criar a tabela de relacionamento Livro_Assunto (N para N)
+CREATE TABLE Livro_Assunto (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Livro_Codl INT NOT NULL,
+    Assunto_CodAs INT NOT NULL,
+    CONSTRAINT FK_LivroAssunto_Livro FOREIGN KEY (Livro_Codl) REFERENCES Livro (Codl) ON DELETE CASCADE,
+    CONSTRAINT FK_LivroAssunto_Assunto FOREIGN KEY (Assunto_CodAs) REFERENCES Assunto (CodAs) ON DELETE CASCADE
+);
+GO

@@ -1,0 +1,36 @@
+﻿@model TesteTJJUD.Models.Livro
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-primary">Details</h2>
+
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Titulo)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Titulo)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Editora)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Editora)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Edicao)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Edicao)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.AnoPublicacao)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.AnoPublicacao)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Valor)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Valor)</dd>
+        </dl>
+    </div>
+</div>
+
+<p class="mt-3">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Codl }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Voltar para Lista", "Index", null, new { @class = "btn btn-secondary" })
+</p>

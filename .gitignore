@@ -1,0 +1,17 @@
+bin/
+obj/
+*.suo
+*.user
+*.cache
+*.dll
+*.exe
+*.pdb
+*.log
+.vscode/
+.idea/
+node_modules/
+packages/
+wwwroot/
+appsettings.json
+appsettings.Development.json
+.vs/

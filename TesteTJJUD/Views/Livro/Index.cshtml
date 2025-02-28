@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TesteTJJUD.Models.Livro>
+
+@{
+    ViewBag.Title = "Livros";
+}
+
+<h2>Livros</h2>
+
+<p>
+    @Html.ActionLink("Criar Novo Livro", "Create")
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Titulo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Codl }) |
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Codl }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.Codl })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
