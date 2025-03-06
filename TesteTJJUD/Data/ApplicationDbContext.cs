@@ -12,7 +12,7 @@ namespace TesteTJJUD.Data
     {
         public ApplicationDbContext() : base("TJConecctionString")
         {
-            Database.SetInitializer<ApplicationDbContext>(null); // Desativa a inicialização automática
+            Database.SetInitializer<ApplicationDbContext>(null); // Desativa a inicialização automática, sem migration
         }
 
         public DbSet<Livro> Livros { get; set; }
