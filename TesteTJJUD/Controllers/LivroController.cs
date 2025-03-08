@@ -31,41 +31,38 @@ namespace TesteTJJUD.Controllers
         [HttpPost]
         public ActionResult Create(Livro livro, int[] autoresSelecionados, int[] assuntosSelecionados)
         {
-            foreach (var modelState in ModelState.Values)
-            {
-                foreach (var error in modelState.Errors)
-                {
-                    System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
-                }
-            }
 
+            if (autoresSelecionados == null || !autoresSelecionados.Any())
+                ModelState.AddModelError("LivroAutores", "Selecione pelo menos um autor.");
+
+
+            if (assuntosSelecionados == null || !assuntosSelecionados.Any())
+                ModelState.AddModelError("LivroAssuntos", "Selecione pelo menos um assunto.");
 
             if (ModelState.IsValid)
             {
                 try
                 {
 
+                    livro.LivroAutores = autoresSelecionados.Select(autorId => 
+                        new LivroAutor { Autor_CodAu = autorId, Livro_Codl = livro.Codl }).ToList();
 
-                    livro.LivroAutores = new List<LivroAutor>();
-                    livro.LivroAssuntos = new List<LivroAssunto>();
+                    livro.LivroAssuntos = assuntosSelecionados.Select(assuntoId =>
+                        new LivroAssunto { Assunto_CodAs = assuntoId, Livro_Codl = livro.Codl }).ToList();
 
-                    if (autoresSelecionados != null)
-                    {
-                        livro.LivroAutores = new List<LivroAutor>();
-                        foreach (var autorId in autoresSelecionados)
-                        {
-                            livro.LivroAutores.Add(new LivroAutor { Autor_CodAu = autorId });
-                        }
-                    }
+                    //if (autoresSelecionados != null)
+                    //{
+                    //    foreach (var autorId in autoresSelecionados)
+                    //        livro.LivroAutores.Add(new LivroAutor { Autor_CodAu = autorId });
 
-                    if (assuntosSelecionados != null)
-                    {
-                        livro.LivroAssuntos = new List<LivroAssunto>();
-                        foreach (var assuntoId in assuntosSelecionados)
-                        {
-                            livro.LivroAssuntos.Add(new LivroAssunto { Assunto_CodAs = assuntoId });
-                        }
-                    }
+                    //}
+
+                    //if (assuntosSelecionados != null)
+                    //{
+                    //    foreach (var assuntoId in assuntosSelecionados)
+                    //        livro.LivroAssuntos.Add(new LivroAssunto { Assunto_CodAs = assuntoId, Livro_Codl = livro.Codl });
+
+                    //}
 
                     _context.Livros.Add(livro);
                     _context.SaveChanges();
@@ -84,7 +81,18 @@ namespace TesteTJJUD.Controllers
             return View(livro);
         }
 
+        //[HttpPost]
+        //public ActionResult Create(Livro livro)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Livros.Add(livro);
+        //        _context.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(livro);
 
+        //}
         public ActionResult Edit(int id)
         {
             var livro = _context.Livros.Find(id);

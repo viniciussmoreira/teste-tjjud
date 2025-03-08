@@ -12,13 +12,13 @@ namespace TesteTJJUD.Models
     {
         [Key]
         public int Id { get; set; }
-
-        [ForeignKey("Livro")]
+        
+        [ForeignKey("Livro")]        
         public int Livro_Codl { get; set; }
-        public Livro Livro { get; set; }
-
-        [ForeignKey("Assunto")]
+        public virtual Livro Livro { get; set; }
+        
+        [ForeignKey("Assunto")]        
         public int Assunto_CodAs { get; set; }
-        public Assunto Assunto { get; set; }
+        public virtual Assunto Assunto { get; set; }
     }
 }

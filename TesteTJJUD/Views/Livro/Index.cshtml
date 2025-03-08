@@ -4,11 +4,10 @@
     ViewBag.Title = "Livros";
 }
 
-<h2>Livros</h2>
+<h2>Cadastro de Livros</h2>
 
-<p>
-    @Html.ActionLink("Criar Novo Livro", "Create")
-</p>
+
+<p><a href="@Url.Action("Create")" class="btn btn-success btn-sm">Novo Livro</a></p>
 
 <table class="table">
     <thead>

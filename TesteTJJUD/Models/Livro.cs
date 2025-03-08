@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,12 +12,7 @@ namespace TesteTJJUD.Models
 
     [Table("Livro")]
     public class Livro
-    {
-        public Livro()
-        {
-            LivroAutores = new List<LivroAutor>();
-            LivroAssuntos = new List<LivroAssunto>();
-        }
+    {        
         [Key]
         public int Codl { get; set; }
 
@@ -32,6 +28,7 @@ namespace TesteTJJUD.Models
         [Required]
         public string AnoPublicacao { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:C}",ApplyFormatInEditMode = true )]        
         public decimal Valor { get; set; }
 
         public ICollection<LivroAutor> LivroAutores { get; set; } = new List<LivroAutor>();

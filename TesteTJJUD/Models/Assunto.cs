@@ -11,6 +11,7 @@ namespace TesteTJJUD.Models
     public class Assunto
     {
         [Key]
+
         public int CodAs { get; set; }
 
         [Required, StringLength(20)]

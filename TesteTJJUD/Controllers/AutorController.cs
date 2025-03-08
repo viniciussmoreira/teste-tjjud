@@ -71,6 +71,17 @@ namespace TesteTJJUD.Controllers
             return View(autor);
         }
 
+
+        public ActionResult Details(int id)
+        {
+            var autor = _context.Autores.Find(id);
+            if (autor == null)
+            {
+                return HttpNotFound();
+            }
+            return View(autor);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
