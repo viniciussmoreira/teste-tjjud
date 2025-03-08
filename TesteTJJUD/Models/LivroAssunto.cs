@@ -7,7 +7,7 @@ using System.Web;
 
 namespace TesteTJJUD.Models
 {
-    
+    [Table("Livro_Assunto")]
     public class LivroAssunto
     {
         [Key]

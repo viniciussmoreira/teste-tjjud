@@ -1,0 +1,30 @@
+﻿@model TesteTJJUD.Models.Assunto
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <label>Nome</label>
+        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control", @maxlength = "20" })
+    </div>
+
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var modelState in ViewData.ModelState.Values)
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}

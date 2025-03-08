@@ -1,0 +1,26 @@
+﻿@model IEnumerable<TesteTJJUD.Models.Autor>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cadastro de Autores</h2>
+
+
+<p><a href="@Url.Action("Create")" class="btn btn-success">Novo Autor</a></p>
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Ações</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>
+                <a href="@Url.Action("Details", new { id = item.CodAu })" class="btn btn-info btn-sm">Detalhes</a>
+                <a href="@Url.Action("Edit", new { id = item.CodAu })" class="btn btn-warning btn-sm">Editar</a>
+                <a href="@Url.Action("Delete", new { id = item.CodAu })" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,17 @@
+﻿@model TesteTJJUD.Models.Assunto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    <div>
+        <label>Descrição</label>
+        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}

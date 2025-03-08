@@ -7,9 +7,10 @@ using System.Web;
 
 namespace TesteTJJUD.Models
 {
-    
+    [Table("Livro_Autor")]
     public class LivroAutor
     {
+        //Tabela de ligação  N Livros N Autores
         [Key]
         public int Id { get; set; }
 

@@ -298,11 +298,19 @@
     <Content Include="Views\Livro\Edit.cshtml" />
     <Content Include="Views\Livro\List.cshtml" />
     <Content Include="Views\Livro\Details.cshtml" />
+    <Content Include="Views\Livro\Create - Copy.cshtml" />
+    <Content Include="Views\Autor\Index.cshtml" />
+    <Content Include="Views\Autor\Edit.cshtml" />
+    <Content Include="Views\Assunto\Index.cshtml" />
+    <Content Include="Views\Assunto\Edit.cshtml" />
+    <Content Include="Views\Autor\Create.cshtml" />
+    <Content Include="Views\Assunto\Create.cshtml" />
+    <Content Include="Views\Assunto\Delete.cshtml" />
+    <Content Include="Views\Autor\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Report\" />
-    <Folder Include="Views\Autor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

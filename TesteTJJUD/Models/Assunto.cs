@@ -7,7 +7,7 @@ using System.Web;
 
 namespace TesteTJJUD.Models
 {
-    
+    [Table("Assunto")]
     public class Assunto
     {
         [Key]
@@ -15,5 +15,8 @@ namespace TesteTJJUD.Models
 
         [Required, StringLength(20)]
         public string Descricao { get; set; }
+
+        
+        public ICollection<LivroAssunto> LivroAssuntos { get; set; } = new List<LivroAssunto>();
     }
 }
