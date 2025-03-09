@@ -18,12 +18,15 @@
             <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Nome)</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.Nome)</dd>
 
-            
+            <dt class="col-sm-3">Quantidade Livros</dt>
+            <dd class="col-sm-9">@ViewBag.qtdLivros</dd>
+
+
         </dl>
     </div>
 </div>
 
 <p class="mt-3">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CodAu }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CodAu }, new { @class = "btn btn-warning" })
     @Html.ActionLink("Voltar para Lista", "Index", null, new { @class = "btn btn-secondary" })
 </p>

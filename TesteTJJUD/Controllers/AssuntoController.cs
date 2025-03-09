@@ -52,14 +52,14 @@ namespace TesteTJJUD.Controllers
         {
             if (ModelState.IsValid)
             {
-                var assuntoNoBanco = _context.Assuntos.Find(id);
-                if (assuntoNoBanco == null)
+                var item = _context.Assuntos.Find(id);
+                if (item == null)
                 {
                     return HttpNotFound();
                 }
 
                 // Atualiza os campos necessários
-                assuntoNoBanco.Descricao = assunto.Descricao;
+                item.Descricao = assunto.Descricao;
 
                 _context.SaveChanges();
                 return RedirectToAction("Index");

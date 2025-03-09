@@ -23,15 +23,34 @@ namespace TesteTJJUD.Controllers
         }
         public ActionResult Edit(int id)
         {
-            var livro = _context.Assuntos.Find(id);
-            if (livro == null)
+            var autor = _context.Autores.Find(id);
+            if (autor == null)
                 return HttpNotFound();
 
+            ViewBag.qtdLivros = _context.LivroAutores.Count(x => x.Autor_CodAu.Equals(id));
             ViewBag.Autores = _context.Autores.ToList();
             ViewBag.Assuntos = _context.Assuntos.ToList();
-            return View(livro);
+            return View(autor);
         }
+        [HttpPost]
+        public ActionResult Edit(int id, Autor autor)
+        {
+            if (ModelState.IsValid)
+            {
+                var item = _context.Autores.Find(id);
+                if (item == null)
+                {
+                    return HttpNotFound();
+                }
 
+                // Atualiza os campos necessários
+                item.Nome = autor.Nome;
+
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(autor);
+        }
 
         public ActionResult Delete(int id)
         {
@@ -74,11 +93,12 @@ namespace TesteTJJUD.Controllers
 
         public ActionResult Details(int id)
         {
-            var autor = _context.Autores.Find(id);
+            var autor = _context.Autores.Find(id);            
             if (autor == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.qtdLivros = _context.LivroAutores.Count(x => x.Autor_CodAu.Equals(id));
             return View(autor);
         }
 

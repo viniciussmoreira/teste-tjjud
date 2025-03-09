@@ -8,7 +8,7 @@
 
 <div class="card">
     <div class="card-header bg-dark text-white">
-        
+
     </div>
     <div class="card-body">
         <dl class="row">
@@ -26,11 +26,12 @@
 
             <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Valor)</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.Valor)</dd>
+
         </dl>
     </div>
 </div>
 
 <p class="mt-3">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Codl }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Codl }, new { @class = "btn btn-warning" })
     @Html.ActionLink("Voltar para Lista", "Index", null, new { @class = "btn btn-secondary" })
 </p>

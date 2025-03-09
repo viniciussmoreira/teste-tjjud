@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web.Mvc;
 using TesteTJJUD.Data;
 using TesteTJJUD.Models;
@@ -171,7 +172,9 @@ namespace TesteTJJUD.Controllers
 
         public ActionResult Details(int id)
         {
+
             var livro = _context.Livros.Find(id);
+            
             if (livro == null)
             {
                 return HttpNotFound();

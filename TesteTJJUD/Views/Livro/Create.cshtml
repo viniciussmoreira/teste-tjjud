@@ -8,11 +8,11 @@
 {
     <div>
         <label>Título</label>
-        @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control", @maxlength = "20" })
+        @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control", @maxlength = "40" })
     </div>
     <div>
         <label>Editora</label>
-        @Html.TextBoxFor(model => model.Editora, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.Editora, new { @class = "form-control", @maxlength = "40" })
     </div>
     <div>
         <label>Edição</label>
@@ -20,7 +20,7 @@
     </div>
     <div>
         <label>Ano de Publicação</label>
-        @Html.TextBoxFor(model => model.AnoPublicacao, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.AnoPublicacao, new { @class = "form-control", @maxlength = "4" })
     </div>
 
     <div class="mb-3">
