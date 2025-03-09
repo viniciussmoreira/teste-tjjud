@@ -45,7 +45,27 @@
                 @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
             </div>
 
+            <div>
+                <label>Autores</label>
+                @foreach (var autor in ViewBag.Autores)
+                {
+                    var isChecked = ViewBag.AutoresSelecionados.Contains(autor.CodAu) ? "checked" : "";
+                    <div>
+                        <input type="checkbox" name="autoresSelecionados" value="@autor.CodAu" @isChecked /> @autor.Nome
+                    </div>
+                }
+            </div>
 
+            <div>
+                <label>Assuntos</label>
+                @foreach (var assunto in ViewBag.Assuntos)
+                {
+                    var isChecked = ViewBag.AssuntosSelecionados.Contains(assunto.CodAs) ? "checked" : "";
+                    <div>
+                        <input type="checkbox" name="assuntosSelecionados" value="@assunto.CodAs" @isChecked /> @assunto.Descricao
+                    </div>
+                }
+            </div>
 
             <div class="text-end">
                 <input type="submit" value="Save" class="btn btn-primary" />
