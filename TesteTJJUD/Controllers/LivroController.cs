@@ -140,6 +140,7 @@ namespace TesteTJJUD.Controllers
                 livroDb.Editora = livro.Editora;
                 livroDb.Edicao = livro.Edicao;
                 livroDb.AnoPublicacao = livro.AnoPublicacao;
+                livroDb.Valor = livro.Valor;
 
                 // Atualizar Autores
                 livroDb.LivroAutores.Clear();

@@ -76,8 +76,8 @@ namespace TesteTJJUD.Controllers
 
             if (livrosRelacionados.Any())
             {
-                ViewBag.Error = "Não é possível excluir o autor, pois ele está vinculado aos seguintes livros: " +
-                        string.Join(", ", livrosRelacionados);
+                ViewBag.Error = "Não é possível excluir o autor, pois ele está vinculado aos seguintes livros: <ul><li>" +
+                        string.Join("</li><li>", livrosRelacionados) + "</li></ul>";
                 return View("Delete", autor);
             }
 

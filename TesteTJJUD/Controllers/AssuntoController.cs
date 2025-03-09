@@ -82,15 +82,15 @@ namespace TesteTJJUD.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var assunto = _context.Assuntos.Find(id);
-            var livrosRelacionados = _context.LivroAutores
-                .Where(x => x.Autor_CodAu.Equals(id))
+            var livrosRelacionados = _context.LivroAssuntos
+                .Where(x => x.Assunto_CodAs.Equals(id))
                 .Select(x => x.Livro.Titulo)
                 .ToList();
 
-            if(livrosRelacionados.Any())
+            if (livrosRelacionados.Any())
             {
-                ViewBag.Error = "Não é possível excluir o assunto, pois ele está vinculado aos seguintes livros: " +
-                       string.Join(", ", livrosRelacionados);
+                ViewBag.Error = "Não é possível excluir o assunto, pois ele está vinculado aos seguintes livros: <ul><li>" +
+                       string.Join("</li><li>", livrosRelacionados) + "</li></ul>";
                 return View("Delete", assunto);
             }
 
@@ -109,7 +109,7 @@ namespace TesteTJJUD.Controllers
                 return HttpNotFound();
 
 
-            ViewBag.qtdLivros = _context.LivroAutores.Count(x => x.Autor_CodAu.Equals(id));
+            ViewBag.qtdLivros = _context.LivroAssuntos.Count(x => x.Assunto_CodAs.Equals(id));
             return View(assunto);
 
         }
