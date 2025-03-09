@@ -15,6 +15,16 @@
             <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Titulo)</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.Titulo)</dd>
 
+            <dt class="col-sm-3">Assuntos</dt>
+            <dd class="col-sm-9">
+                <ul class="list-unstyled">
+                    @foreach (var item in ViewBag.listaAssuntos)
+                    {
+                        <li>@item</li>
+                    }
+                </ul>
+            </dd>
+
             <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Editora)</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.Editora)</dd>
 
@@ -26,6 +36,19 @@
 
             <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Valor)</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.Valor)</dd>
+
+            <dt class="col-sm-3">Autor</dt>
+            <dd class="col-sm-9">
+                <ul class="list-unstyled">
+                    @foreach (var item in ViewBag.listaAutores)
+                    {
+                        <li>@item</li>
+
+                    }
+                </ul>
+            </dd>
+
+
 
         </dl>
     </div>

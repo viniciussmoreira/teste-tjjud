@@ -174,7 +174,12 @@ namespace TesteTJJUD.Controllers
         {
 
             var livro = _context.Livros.Find(id);
-            
+            ViewBag.listaAutores = _context.LivroAutores.Where(x => x.Livro_Codl.Equals(id))
+                .Select(x => x.Autor.Nome).ToList();
+
+            ViewBag.listaAssuntos = _context.LivroAssuntos.Where(x => x.Livro_Codl.Equals(id))
+                .Select(x => x.Assunto.Descricao).ToList();
+
             if (livro == null)
             {
                 return HttpNotFound();

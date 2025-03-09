@@ -56,16 +56,31 @@ namespace TesteTJJUD.Controllers
         {
             var autor = _context.Autores.Find(id);
             if (autor == null)
-            {
                 return HttpNotFound();
-            }
+
+
+
             return View(autor);
         }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
+
             var autor = _context.Autores.Find(id);
+            var livrosRelacionados = _context.LivroAutores
+                .Where(x => x.Autor_CodAu.Equals(id))
+                .Select(x => x.Livro.Titulo)
+                .ToList();
+
+
+            if (livrosRelacionados.Any())
+            {
+                ViewBag.Error = "Não é possível excluir o autor, pois ele está vinculado aos seguintes livros: " +
+                        string.Join(", ", livrosRelacionados);
+                return View("Delete", autor);
+            }
+
             if (autor != null)
             {
                 _context.Autores.Remove(autor);
@@ -93,11 +108,10 @@ namespace TesteTJJUD.Controllers
 
         public ActionResult Details(int id)
         {
-            var autor = _context.Autores.Find(id);            
+            var autor = _context.Autores.Find(id);
             if (autor == null)
-            {
                 return HttpNotFound();
-            }
+
             ViewBag.qtdLivros = _context.LivroAutores.Count(x => x.Autor_CodAu.Equals(id));
             return View(autor);
         }

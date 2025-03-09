@@ -4,21 +4,17 @@
     ViewBag.Title = "Excluir Assunto";
 }
 
-<h2>Excluir Livro</h2>
+<h2>Excluir Assunto</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
 
 <div>
-    <h4>Livro</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LivroAssuntos) <!-- Altere conforme a propriedade correta -->
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LivroAssuntos) <!-- Altere conforme a propriedade correta -->
-        </dd>
-        <!-- Adicione outras propriedades conforme necessário -->
-    </dl>
-
     <h4>Tem certeza que deseja excluir este livro?</h4>
     @using (Html.BeginForm("Delete", "Assunto", FormMethod.Post))
     {
