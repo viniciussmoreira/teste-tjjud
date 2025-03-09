@@ -19,7 +19,7 @@ namespace TesteTJJUD.Controllers
             _context = new ApplicationDbContext();
         }
 
-       
+
         public ActionResult Index()
         {
             var dados = _context.VwLivros
@@ -31,7 +31,8 @@ namespace TesteTJJUD.Controllers
                     l.Assunto,
                     l.AnoPublicacao,
                     l.Valor
-                }).ToList();
+                })
+                .ToList();
 
             var pdfDocument = Document.Create(container =>
             {
@@ -41,24 +42,28 @@ namespace TesteTJJUD.Controllers
                     page.Margin(20);
                     page.DefaultTextStyle(x => x.FontSize(12));
 
+                    // HEader relatorio
                     page.Header()
                         .Text("Relatório de Livros")
                         .SemiBold()
                         .FontSize(18)
                         .AlignCenter();
 
+                    // Tabela de dados
                     page.Content().Table(table =>
                     {
+                        // Definição das colunas
                         table.ColumnsDefinition(columns =>
                         {
                             columns.ConstantColumn(200); // Título
-                            columns.RelativeColumn(); // Editora
-                            columns.RelativeColumn(); // Autor
-                            columns.RelativeColumn(); // Assunto
+                            columns.RelativeColumn();   // Editora
+                            columns.RelativeColumn();   // Autor
+                            columns.RelativeColumn();   // Assunto
                             columns.ConstantColumn(80); // Ano
                             columns.ConstantColumn(80); // Valor
                         });
 
+                        // Header tabela
                         table.Header(header =>
                         {
                             header.Cell().Text("Título").Bold();
@@ -69,6 +74,7 @@ namespace TesteTJJUD.Controllers
                             header.Cell().Text("Valor").Bold();
                         });
 
+                        // Preenchendo a tabela com os dados
                         foreach (var livro in dados)
                         {
                             table.Cell().Text(livro.Titulo);
@@ -81,9 +87,12 @@ namespace TesteTJJUD.Controllers
                     });
                 });
             });
-            QuestPDF.Settings.License = LicenseType.Community;
+
+            QuestPDF.Settings.License = LicenseType.Community; //precisa pra rodar free
             byte[] pdfBytes = pdfDocument.GeneratePdf();
+
             return File(pdfBytes, "application/pdf", "RelatorioLivros.pdf");
         }
+
     }
 }
