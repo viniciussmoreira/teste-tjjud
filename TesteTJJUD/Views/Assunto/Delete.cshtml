@@ -13,9 +13,18 @@
     </div>
 }
 
-<div>
+<div>    
     <hr />
-    <h4>Tem certeza que deseja excluir este livro?</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+    </dl>
+    
+    <h4>Tem certeza que deseja excluir este assunto?</h4>
     @using (Html.BeginForm("Delete", "Assunto", FormMethod.Post))
     {
         @Html.AntiForgeryToken()

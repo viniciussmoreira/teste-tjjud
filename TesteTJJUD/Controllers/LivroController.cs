@@ -56,6 +56,7 @@ namespace TesteTJJUD.Controllers
             }
 
             // Volta para a view com os dados corretos
+
             ViewBag.Autores = _context.Autores.ToList();
             ViewBag.Assuntos = _context.Assuntos.ToList();
             return View(livro);
@@ -100,12 +101,12 @@ namespace TesteTJJUD.Controllers
                 return HttpNotFound();
 
             // Autores|Assuntos gravados pra vir selecionado
-            var autoresSelecionados = _context.LivroAutores
+            List<int> autoresSelecionados = _context.LivroAutores
                 .Where(la => la.Livro_Codl == id)
                 .Select(la => la.Autor_CodAu)
                 .ToList();
 
-            var assuntosSelecionados = _context.LivroAssuntos
+            List<int> assuntosSelecionados = _context.LivroAssuntos
                 .Where(la => la.Livro_Codl == id)
                 .Select(la => la.Assunto_CodAs)
                 .ToList();
@@ -127,6 +128,7 @@ namespace TesteTJJUD.Controllers
         public ActionResult Edit(int id, Livro livro, int[] autoresSelecionados, int[] assuntosSelecionados)
         {
             ValidaAutorAssunto(autoresSelecionados, assuntosSelecionados);
+            MarcarSelecionados(id, autoresSelecionados, assuntosSelecionados);
 
             if (ModelState.IsValid)
             {
@@ -139,42 +141,7 @@ namespace TesteTJJUD.Controllers
                 livroDb.Edicao = livro.Edicao;
                 livroDb.AnoPublicacao = livro.AnoPublicacao;
                 livroDb.Valor = livro.Valor;
-
-                // Atualizar Autores
-                var autoresAtuais = _context.LivroAutores.Where(la => la.Livro_Codl == id).ToList();
-                var novosAutores = autoresSelecionados ?? new int[0];
-
-                // Remover autores não selecionados
-                foreach (var autor in autoresAtuais)
-                {
-                    if (!novosAutores.Contains(autor.Autor_CodAu))
-                        _context.LivroAutores.Remove(autor);
-                }
-
-                // Adicionar novos autores
-                foreach (var autorId in novosAutores)
-                {
-                    if (!autoresAtuais.Any(a => a.Autor_CodAu == autorId))
-                        _context.LivroAutores.Add(new LivroAutor { Livro_Codl = id, Autor_CodAu = autorId });
-                }
-
-                // Atualizar Assuntos
-                var assuntosAtuais = _context.LivroAssuntos.Where(la => la.Livro_Codl == id).ToList();
-                var novosAssuntos = assuntosSelecionados ?? new int[0];
-
-                // Remover assuntos não selecionados
-                foreach (var assunto in assuntosAtuais)
-                {
-                    if (!novosAssuntos.Contains(assunto.Assunto_CodAs))
-                        _context.LivroAssuntos.Remove(assunto);
-                }
-
-                // Adicionar novos assuntos
-                foreach (var assuntoId in novosAssuntos)
-                {
-                    if (!assuntosAtuais.Any(a => a.Assunto_CodAs == assuntoId))
-                        _context.LivroAssuntos.Add(new LivroAssunto { Livro_Codl = id, Assunto_CodAs = assuntoId });
-                }
+                //MarcarSelecionados(id, autoresSelecionados, assuntosSelecionados);
 
                 _context.SaveChanges();
                 return RedirectToAction("Index");
@@ -182,9 +149,49 @@ namespace TesteTJJUD.Controllers
 
             ViewBag.Autores = _context.Autores.ToList();
             ViewBag.Assuntos = _context.Assuntos.ToList();
+            ViewBag.AutoresSelecionados = autoresSelecionados;
+            ViewBag.AssuntosSelecionados = assuntosSelecionados;
             return View(livro);
         }
 
+        private void MarcarSelecionados(int id, int[] autoresSelecionados, int[] assuntosSelecionados)
+        {
+            // Atualizar Autores
+            var autoresAtuais = _context.LivroAutores.Where(la => la.Livro_Codl == id).ToList();
+            var novosAutores = autoresSelecionados ?? new int[0];
+
+            // Remover autores não selecionados
+            foreach (var autor in autoresAtuais)
+            {
+                if (!novosAutores.Contains(autor.Autor_CodAu))
+                    _context.LivroAutores.Remove(autor);
+            }
+
+            // Adicionar novos autores
+            foreach (var autorId in novosAutores)
+            {
+                if (!autoresAtuais.Any(a => a.Autor_CodAu == autorId))
+                    _context.LivroAutores.Add(new LivroAutor { Livro_Codl = id, Autor_CodAu = autorId });
+            }
+
+            // Atualizar Assuntos
+            var assuntosAtuais = _context.LivroAssuntos.Where(la => la.Livro_Codl == id).ToList();
+            var novosAssuntos = assuntosSelecionados ?? new int[0];
+
+            // Remover assuntos não selecionados
+            foreach (var assunto in assuntosAtuais)
+            {
+                if (!novosAssuntos.Contains(assunto.Assunto_CodAs))
+                    _context.LivroAssuntos.Remove(assunto);
+            }
+
+            // Adicionar novos assuntos
+            foreach (var assuntoId in novosAssuntos)
+            {
+                if (!assuntosAtuais.Any(a => a.Assunto_CodAs == assuntoId))
+                    _context.LivroAssuntos.Add(new LivroAssunto { Livro_Codl = id, Assunto_CodAs = assuntoId });
+            }
+        }
 
         public ActionResult Details(int id)
         {

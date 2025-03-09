@@ -31,8 +31,11 @@ namespace TesteTJJUD.Models
         [Required]
         [MaxLength(4)]
         public string AnoPublicacao { get; set; }
+        
         [Required]
-        [DisplayFormat(DataFormatString = "{0:C}",ApplyFormatInEditMode = false )]        
+        [DefaultValue(0)]
+        [DisplayFormat(DataFormatString = "{0:C}",ApplyFormatInEditMode = false )]
+        
         public decimal Valor { get; set; }
 
         public ICollection<LivroAutor> LivroAutores { get; set; } = new List<LivroAutor>();
