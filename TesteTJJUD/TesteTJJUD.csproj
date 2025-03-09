@@ -136,6 +136,9 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="QuestPDF, Version=2025.1.5.0, Culture=neutral, PublicKeyToken=0f3c2b2315ff52c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuestPDF.2025.1.5\lib\netstandard2.0\QuestPDF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -217,6 +220,7 @@
     <Compile Include="Controllers\AutorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivroController.cs" />
+    <Compile Include="Controllers\RelatorioController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,6 +231,7 @@
     <Compile Include="Models\Livro.cs" />
     <Compile Include="Models\LivroAssunto.cs" />
     <Compile Include="Models\LivroAutor.cs" />
+    <Compile Include="Models\VwLivro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
@@ -316,6 +321,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Report\" />
+    <Folder Include="Views\Relatorio\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -379,8 +385,10 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\QuestPDF.2025.1.5\build\net4\QuestPDF.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\QuestPDF.2025.1.5\build\net4\QuestPDF.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="..\packages\QuestPDF.2025.1.5\build\net4\QuestPDF.targets" Condition="Exists('..\packages\QuestPDF.2025.1.5\build\net4\QuestPDF.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

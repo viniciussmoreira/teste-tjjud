@@ -21,6 +21,8 @@ namespace TesteTJJUD.Data
         public DbSet<LivroAutor> LivroAutores { get; set; }
         public DbSet<LivroAssunto> LivroAssuntos { get; set; }
 
+        public DbSet<VwLivro> VwLivros { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -28,6 +30,7 @@ namespace TesteTJJUD.Data
                 .HasRequired(la => la.Livro)
                 .WithMany(l => l.LivroAutores)
                 .HasForeignKey(la => la.Livro_Codl);
+
 
             //modelBuilder.Entity<LivroAutor>()
             //    .HasRequired(la => la.Autor)
