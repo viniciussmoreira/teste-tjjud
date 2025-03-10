@@ -11,9 +11,14 @@ namespace TesteTJJUD.Data
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext() : base("TJConecctionString")
-        {           
+        {
             Database.SetInitializer<ApplicationDbContext>(null); // Desativa a inicialização automática, sem migration
         }
+
+        //public ApplicationDbContext() : base("TJConecctionString_desenv")
+        //{
+        //    Database.SetInitializer<ApplicationDbContext>(null); // Desativa a inicialização automática, sem migration
+        //}
 
         public DbSet<Livro> Livros { get; set; }
         public DbSet<Autor> Autores { get; set; }
